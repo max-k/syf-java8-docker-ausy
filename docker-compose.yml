@@ -2,17 +2,24 @@ version: '2'
 
 services:
 
-    syf-pg:
-        image: postgres
-        environment:
-            POSTGRES_DB: rps
-            POSTGRES_USER: rps
-            POSTGRES_PASSWORD: rps
+  syf-pg:
+    image: postgres
+    environment:
+      POSTGRES_DB: rps
+      POSTGRES_USER: rps
+      POSTGRES_PASSWORD: rps
 
-    syf-ws:
-        image: jboss/wildfly
-        ports:
-          - 8080:8080
-          - 9090:9090
-        volumes:
-                - ./wildfly/rps-war.war:/opt/jboss/wildfly/standalone/deployments/rps-war.war
+  syf-ws:
+    image: jboss/wildfly
+    ports:
+      - 8080:8080
+      - 9090:9090
+    volumes:
+      - ./wildfly/rps-war.war:/opt/jboss/wildfly/standalone/deployments/rps-war.war
+
+# Partie à faire coder aux stagiaires
+
+  syf-ui:
+    build: ./nginx
+    ports:
+      - 80:80
