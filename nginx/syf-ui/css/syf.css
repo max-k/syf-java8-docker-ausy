@@ -1,0 +1,87 @@
+#header {
+	margin: 20px 20px 60px;
+}
+#header-ausy-logo {
+	height: 38px;
+	float: right;
+}
+
+h2 {
+	margin-bottom: 50px;
+}
+
+.card {
+	height: 280px;
+	width: 200px;
+	border: 1px solid #555;
+	display: inline-block;
+	border-radius: 4px;
+
+	display: inline-block;
+	background-image: url('../images/cards.png');
+	background-repeat: no-repeat;
+	background-color: #fff;
+	overflow: hidden;
+	text-indent: -9999px;
+	text-align: left;
+	
+}
+.card-rock {
+	background-position: -20px -1122px;
+}
+.card-paper {
+	background-position: -20px -568px;
+}
+.card-scissors {
+	background-position: -20px -0px;
+}
+
+/* My cards */
+#my-cards {
+	position: relative;
+}
+#my-cards .card {
+	position: absolute;
+	cursor: pointer;
+}
+#my-cards .card.selected {
+	cursor: default;
+	z-index: 1;
+}
+
+#my-cards .card.selected,
+#my-cards .card:hover {
+	border-color: #3097c2;
+}
+#my-cards .card-rock {
+	transform: rotate(-10deg);
+	/*left: 25px;*/
+}
+#my-cards .card-rock.selected,
+#my-cards .card-rock:hover {
+	background-position: -20px -1412px;
+}
+#my-cards .card-paper {
+	transform: rotate(2deg);
+	/*left: 200px;*/
+}
+#my-cards .card-paper.selected,
+#my-cards .card-paper:hover {
+	background-position: -20px -845px;
+}
+#my-cards .card-scissors {
+	transform: rotate(10deg);
+	/*left: 375px;*/
+}
+#my-cards .card-scissors.selected,
+#my-cards .card-scissors:hover {
+	background-position: -20px -284px;
+}
+/*#my-cards .card.selected {
+	transform: rotate(2deg);
+}*/
+
+/* Opponent cards */
+#opponent-card .card {
+	transform: rotate(-2deg);
+}
