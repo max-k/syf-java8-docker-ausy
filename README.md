@@ -14,3 +14,8 @@
 
  * Write nginx part for docker-compose.yml using following doc: [https://docs.docker.com/compose/compose-file/](https://docs.docker.com/compose/compose-file/)
  * Write Dockerfile for nginx using following doc: [https://docs.docker.com/compose/compose-file/](https://docs.docker.com/engine/reference/builder/)
+ * Inject configuration and webapp static files in nginx image
+
+## UI
+
+ * Inject static files in /opt/webapp directory of nginx image
