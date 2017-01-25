@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Shake Your Finger - Rock Paper Scissors</title>
+
+		<!-- Bootstrap -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/syf.css" rel="stylesheet">
+	</head>
+	<body>
+		<header id="header">
+			<img src="images/ausy.jpg" id="header-ausy-logo" />
+			<h1>Rock Paper Scissors</h1>
+		</header>
+
+
+		<div class="row">
+			<div class="col-sm-7" style="text-align: center;">
+				<h2>You</h2>
+				<div id="my-cards">
+					<div class="card card-rock" data-name="rock"></div>
+					<div class="card card-paper" data-name="paper"></div>
+					<div class="card card-scissors" data-name="scissors"></div>
+				</div>
+			</div>
+			<div class="col-sm-1" style="height: 400px; line-height: 400px; font-size: 50px;">VS</div>
+			<div class="col-sm-4" style="text-align: center;">
+				<h2 class="text-center">Computer</h2>
+				<div id="opponent-card">
+					<div class="card" style="opacity:0;"></div>
+				</div>
+			</div>
+		</div>
+
+		<script src="js/jquery.min.1.12.4.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/game.js"></script>
+		<script type="text/javascript">
+		$(document).ready(function() {
+			resetGame();
+		});
+		</script>
+	</body>
+</html>
