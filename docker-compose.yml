@@ -8,18 +8,26 @@ services:
       POSTGRES_DB: rps
       POSTGRES_USER: rps
       POSTGRES_PASSWORD: rps
+#    volumes:
+        
 
   syf-ws:
     image: jboss/wildfly
+    command: /opt/jboss/wildfly/bin/domain.sh -b 0.0.0.0 -bmanagement 0.0.0.0
     ports:
       - 8080:8080
-      - 9090:9090
+      - 8180:8180
+      - 9990:9990
+      - 9999:9999
     volumes:
-      - ./wildfly/rps-war.war:/opt/jboss/wildfly/standalone/deployments/rps-war.war
+      - ./wildfly/org:/opt/jboss/wildfly/modules/org
+      - ./wildfly/rps-ear.ear:/opt/jboss/wildfly/domain/deployments/rps-ear.ear
+      - ./wildfly/host.xml:/opt/jboss/wildfly/domain/configuration/host.xml
+      - ./wildfly/domain.xml:/opt/jboss/wildfly/domain/configuration/domain.xml
 
 # Partie à faire coder aux stagiaires
 
-  syf-ui:
-    build: ./nginx
-    ports:
-      - 80:80
+#  syf-ui:
+#    build: ./nginx
+#    ports:
+#      - 80:80
