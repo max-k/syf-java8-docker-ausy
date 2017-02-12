@@ -24,6 +24,8 @@ services:
       - ./wildfly/rps-ear.ear:/opt/jboss/wildfly/domain/deployments/rps-ear.ear
       - ./wildfly/host.xml:/opt/jboss/wildfly/domain/configuration/host.xml
       - ./wildfly/domain.xml:/opt/jboss/wildfly/domain/configuration/domain.xml
+      - ./wildfly/mgmt-groups.properties:/opt/jboss/wildfly/domain/configuration/mgmt-groups.properties
+      - ./wildfly/mgmt-users.properties:/opt/jboss/wildfly/domain/configuration/mgmt-users.properties
 
 # Partie à faire coder aux stagiaires
 
