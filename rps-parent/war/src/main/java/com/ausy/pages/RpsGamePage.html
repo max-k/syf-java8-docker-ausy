@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<wicket:head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<title>Rock Paper Scissor Game</title>
+
+	<!-- Bootstrap core CSS -->
+
+	<link href="styles/bootstrap.css" rel="stylesheet">
+
+	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+	<link href="styles/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+	<!-- Custom styles for this template -->
+	<link href="styles/dashboard.css" rel="stylesheet">
+
+</wicket:head>
+</head>
+
+<body>
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Rock Paper Scissor Game</a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#">Help</a></li>
+				</ul>
+				<form class="navbar-form navbar-right">
+					<input type="text" class="form-control" placeholder="Search...">
+				</form>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-3 col-md-2 sidebar">
+				<ul class="nav nav-sidebar">
+					<li class="active"><a href="#">How to Play <span
+							class="sr-only">(current)</span></a></li>
+					<li><a href="#">Human User vs Computer</a></li>
+				</ul>
+			</div>
+			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+				<h1 class="page-header">RPS Dashboard</h1>
+
+				<div class="row placeholders">
+					<div class="col-xs-6 col-sm-3 placeholder">
+						<img src="images/piedra_papel_tijera.png" width="125" height="125"
+							class="img-responsive" alt="Generic placeholder thumbnail">
+					</div>
+					<div class="col-xs-6 col-sm-3 placeholder">
+						<img src="images/rockAndPaper.jpg" width="125" height="125"
+							class="img-responsive" alt="Generic placeholder thumbnail">
+					</div>
+					<div class="col-xs-6 col-sm-3 placeholder">
+						<img src="images/piedra_papel_tijera.jpg" width="125" height="125"
+							class="img-responsive" alt="Generic placeholder thumbnail">
+					</div>
+					<div class="col-xs-6 col-sm-3 placeholder">
+						<img src="images/allMoves.jpg" width="125" height="125"
+							class="img-responsive" alt="Generic placeholder thumbnail">
+					</div>
+				</div>
+
+				<h1 class="page-header"></h1>
+
+				<form wicket:id="resetForm" method="post">
+					<div class="row">
+
+						<div class="text-center">
+							<input type="submit" value="Restart Game" class="btn btn-info"
+								name="submit" />
+						</div>
+					</div>
+				</form>
+
+				<br />
+				<div wicket:id="feedback"></div>
+				<br />
+
+				<form wicket:id="form" method="post">
+					<div class="row">
+						<div class="col-md-2"></div>
+						<div class="col-md-3" wicket:id="userPanel"></div>
+						<div class="col-md-2">
+							<div class="text-center">
+								<input type="submit" value="Play" class="btn btn-info"
+									name="submit" />
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="panel panel-success">
+								<div class="panel-heading">Computer</div>
+								<div class="panel-body">
+									<span wicket:id="computerMove"></span>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<h2 class="sub-header">RPS Results</h2>
+					<div class="table-responsive">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>Player One</th>
+									<th>Move</th>
+									<th>Result</th>
+									<th>Player Two</th>
+									<th>Move</th>
+									<th>Result</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr wicket:id="results">
+									<td><span wicket:id="playerOne">[playerOne]</span></td>
+									<td><span wicket:id="playerOneMove">[playerOneMove]</span></td>
+									<td><span wicket:id="playerOneResult">[emaplayerOneResultil]</span></td>
+									<td><span wicket:id="playerTwo">[playerTwo]</span></td>
+									<td><span wicket:id="playerTwoMove">[playerTwoMove]</span></td>
+									<td><span wicket:id="playerTwoResult">[playerTwoResult]</span></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,3 @@
+batch
+deploy ear/target/rps-ear.ear --server-groups=quickstart-ejb-multi-appOne-server
+run-batch

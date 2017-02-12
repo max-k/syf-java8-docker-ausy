@@ -1,0 +1,3 @@
+# remove all deployments from the domain
+undeploy --server-groups=quickstart-ejb-multi-appOne-server rps-ear.ear
+
