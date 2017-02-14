@@ -10,7 +10,6 @@ import com.ausy.dto.IRpsState;
 import com.ausy.dto.RpsState;
 import com.ausy.entity.RpsResultEntity;
 import com.ausy.exception.PersistenceException;
-import com.ausy.facade.StatefulRockPaperFacadeBean;
 import com.ausy.option.RpsMoveEnum;
 import com.ausy.states.StateEnum;
 import com.ausy.strategy.FactoryStrategy;
@@ -107,40 +106,45 @@ public final class RpsGameHelper {
 		}
 	}
 
-	public static void setLastHistoricalMoveFor(IPlayer playerTwo, IRpsDaoManager rpsManager) {
-		List<RpsResultEntity> results;
+	public static void setLastHistoricalMoveFor(IPlayer player, IRpsDaoManager rpsManager) {
+
+		List<RpsResultEntity> results = null;
+
 		try {
 			results = rpsManager.getRpsResultDao().getAll();
 
 			// Inverse sort
+			// Start : Change to java 7
 			results.sort((resultOne, resultTwo) -> resultTwo.getId().compareTo(resultOne.getId()));
+			// End : Change to java 7
+			
+			// Start : Change to Java 8
+			RpsResultEntity lastResultOfPlayer = null;
 
-			// Change to Java 7
-			Optional<RpsResultEntity> optionalForlastResultOfPlayerTwo = results.stream()
-					.filter(result -> result.getPlayerOne().getName().equals(playerTwo.getName())
-							|| result.getPlayerTwo().getName().equals(playerTwo.getName()))
-					.findFirst();
+			for (RpsResultEntity rpsResult : results) {
+				if (rpsResult.getPlayerOne().getName().equals(player.getName())
+						|| rpsResult.getPlayerTwo().getName().equals(player.getName())) {
+					lastResultOfPlayer = rpsResult;
+				}
+			}
 
-			if (optionalForlastResultOfPlayerTwo.isPresent()) {
+			if (lastResultOfPlayer != null) {
 
-				RpsResultEntity lastResultOfPlayerTwo = optionalForlastResultOfPlayerTwo.get();
+				RpsMoveEnum lastMoveOfPlayer = null;
+				StateEnum lastStateOfPlayer = null;
 
-				RpsMoveEnum lastMoveOfPlayerTwo = null;
-				StateEnum lastStateOfPlayerTwo = null;
-				
-				if (lastResultOfPlayerTwo.getPlayerOne().getName().equals(playerTwo.getName())) {
+				if (lastResultOfPlayer.getPlayerOne().getName().equals(player.getName())) {
 
-					lastMoveOfPlayerTwo = lastResultOfPlayerTwo.getPlayerOneMove();
-					lastStateOfPlayerTwo = lastResultOfPlayerTwo.getPlayerOneResult(); 
+					lastMoveOfPlayer = lastResultOfPlayer.getPlayerOneMove();
+					lastStateOfPlayer = lastResultOfPlayer.getPlayerOneResult();
 				} else {
-					
-					lastMoveOfPlayerTwo = lastResultOfPlayerTwo.getPlayerTwoMove();
-					lastStateOfPlayerTwo = lastResultOfPlayerTwo.getPlayerTwoResult();
+
+					lastMoveOfPlayer = lastResultOfPlayer.getPlayerTwoMove();
+					lastStateOfPlayer = lastResultOfPlayer.getPlayerTwoResult();
 				}
 
-
-				playerTwo.getRpsState().setMove(lastMoveOfPlayerTwo);
-				playerTwo.getRpsState().setState(lastStateOfPlayerTwo);
+				player.getRpsState().setMove(lastMoveOfPlayer);
+				player.getRpsState().setState(lastStateOfPlayer);
 			}
 
 		} catch (PersistenceException e) {
@@ -149,3 +153,40 @@ public final class RpsGameHelper {
 	}
 
 }
+
+// End : Change to Java 8
+
+// Optional<RpsResultEntity> optionalForlastResultOfPlayer =
+// results.stream()
+// .filter(result ->
+// result.getPlayerOne().getName().equals(player.getName())
+// || result.getPlayerTwo().getName().equals(player.getName()))
+// .findFirst();
+//
+// if (optionalForlastResultOfPlayer.isPresent()) {
+//
+// RpsResultEntity lastResultOfPlayerChanged =
+// optionalForlastResultOfPlayer.get();
+//
+// RpsMoveEnum lastMoveOfPlayerTwo = null;
+// StateEnum lastStateOfPlayerTwo = null;
+//
+// if
+// (lastResultOfPlayerChanged.getPlayerOne().getName().equals(player.getName()))
+// {
+//
+// lastMoveOfPlayerTwo =
+// lastResultOfPlayerChanged.getPlayerOneMove();
+// lastStateOfPlayerTwo =
+// lastResultOfPlayerChanged.getPlayerOneResult();
+// } else {
+//
+// lastMoveOfPlayerTwo =
+// lastResultOfPlayerChanged.getPlayerTwoMove();
+// lastStateOfPlayerTwo =
+// lastResultOfPlayerChanged.getPlayerTwoResult();
+// }
+//
+// player.getRpsState().setMove(lastMoveOfPlayerTwo);
+// player.getRpsState().setState(lastStateOfPlayerTwo);
+// }

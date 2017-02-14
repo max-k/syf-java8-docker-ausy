@@ -95,4 +95,9 @@ Undeploy the Archive
 3. When you are finished testing, type this command to undeploy the archive:
 
         %WILDFLY_HOME%\bin\jboss-cli.bat --connect --file=undeploy-domain.cli
+		
+Change some function from Java 7 to Java 8 or viceversa
+1. ejb/src/main/java/com/ausy/controller/RpsGameHelper.java
+2. ejb/src/main/java/com/ausy/facade/RockPaperScissorFacade.java
+3. ejb/src/main/java/com/ausy/facade/StatefulRockPaperFacadeBean.java
 

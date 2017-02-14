@@ -77,8 +77,9 @@ public class StatefulRockPaperFacadeBean implements IStatefulRockPaperScissorFac
 	@Override
 	public List<RpsResultDto> getAllRpsResultsOfCurrentGame() {
 
-		// Change to Java 7
+		// Start : Change to Java 7
 		results.sort((resultOne, resultTwo) -> resultOne.getId().compareTo(resultTwo.getId()));
+		// End :  Change to Java 7
 
 		return new ArrayList<>(results);
 	}

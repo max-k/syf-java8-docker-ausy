@@ -35,9 +35,16 @@ public class RockPaperScissorFacade implements IRockPaperScissorFacade {
 		try {
 			results = rpsManager.getRpsResultDao().getAll();
 			
-			// Change To Java 7
-
-			return results.stream().filter(result -> isWinnerPlayer(userName, result)).count();
+			// Start : Change To Java 8
+			long count  = 0l;
+			for (RpsResultEntity rpsResult : results) {
+				if (isWinnerPlayer(userName, rpsResult)) {
+					count++;
+				}
+			}
+			
+			return count;
+			// End : Change to Java 8
 
 		} catch (PersistenceException e) {
 			LOG.info("Error during the computing of Number of Wins for a player");
@@ -60,3 +67,5 @@ public class RockPaperScissorFacade implements IRockPaperScissorFacade {
 	}
 
 }
+
+// return results.stream().filter(result -> isWinnerPlayer(userName, result)).count();
