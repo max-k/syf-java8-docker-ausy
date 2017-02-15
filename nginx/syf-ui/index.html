@@ -10,7 +10,7 @@
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/syf.css" rel="stylesheet">
 	</head>
-	<body>
+	<body id="body">
 		<header id="header">
 			<img src="images/ausy.jpg" id="header-ausy-logo" />
 			<h1>Rock Paper Scissors</h1>
@@ -19,11 +19,11 @@
 
 		<div class="row">
 			<div class="col-sm-7" style="text-align: center;">
-				<h2>You</h2>
+				<h2><span id="your-name"></span> <span id="stats-counter"></span></h2>
 				<div id="my-cards">
-					<div class="card card-rock" data-name="rock"></div>
-					<div class="card card-paper" data-name="paper"></div>
-					<div class="card card-scissors" data-name="scissors"></div>
+					<div class="card card-rock" data-name="ROCK"></div>
+					<div class="card card-paper" data-name="PAPER"></div>
+					<div class="card card-scissor" data-name="SCISSOR"></div>
 				</div>
 			</div>
 			<div class="col-sm-1" style="height: 400px; line-height: 400px; font-size: 50px;">VS</div>
@@ -35,12 +35,16 @@
 			</div>
 		</div>
 
+		<div id="result-overlay"></div>
+		<div id="result"></div>
+
 		<script src="js/jquery.min.1.12.4.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/game.js"></script>
 		<script type="text/javascript">
 		$(document).ready(function() {
-			resetGame();
+			resetName();
+			$('#body').on('click', '#your-name', resetName);
 		});
 		</script>
 	</body>
