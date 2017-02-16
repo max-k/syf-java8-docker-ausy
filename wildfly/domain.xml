@@ -416,7 +416,7 @@
                         </security>
                     </datasource>
                     <datasource jndi-name="java:/rpsDS" pool-name="rps" enabled="true">
-                        <connection-url>jdbc:postgresql://localhost:5432/rps</connection-url>
+                        <connection-url>jdbc:postgresql://syf-pg:5432/rps</connection-url>
                         <driver>postgres</driver>
                         <pool>
                             <min-pool-size>2</min-pool-size>
