@@ -34,7 +34,7 @@ h2 {
 .card-paper {
 	background-position: -20px -568px;
 }
-.card-scissor {
+.card-scissors {
 	background-position: -20px -0px;
 }
 
@@ -71,12 +71,12 @@ h2 {
 #my-cards .card-paper:hover {
 	background-position: -20px -845px;
 }
-#my-cards .card-scissor {
+#my-cards .card-scissors {
 	transform: rotate(10deg);
 	/*left: 375px;*/
 }
-#my-cards .card-scissor.selected,
-#my-cards .card-scissor:hover {
+#my-cards .card-scissors.selected,
+#my-cards .card-scissors:hover {
 	background-position: -20px -284px;
 }
 /*#my-cards .card.selected {

@@ -26,7 +26,7 @@ function resetGame() {
 
 	placeCardAtPosition('rock', 20, function() { $(this).removeClass('selected').show(); });
 	placeCardAtPosition('paper', 200, function() { $(this).removeClass('selected').show(); });
-	placeCardAtPosition('scissor', 375, function() { $(this).removeClass('selected').show(); });
+	placeCardAtPosition('scissors', 375, function() { $(this).removeClass('selected').show(); });
 
 	// You can select only one card
 	$('#my-cards').one('click', '.card', function() {
@@ -49,14 +49,15 @@ function resetGame() {
 
 		$.ajax({
 			dataType: "json",
-			/*http://localhost:8180/rps-ws/rps/playRps/Nelson/PAPER*/
-			url: '/api/rps-ws/rps/playRps/'+window.NAME+'/' + cardName,
-			data: {},
+			url: '/api/rps/play/'+window.NAME,
+			data: {
+				cardName: cardName
+			},
 			success: function(response) {
 				console.log('response', response);
-				showOpponentCard(response.opponentName, response.moveOpponent);
+				showOpponentCard(response.opponentCardName);
 				showResultBox(response.result);
-				resetStats();
+				resetStats(response.user);
 				setTimeout(hideResultBox, 1500);
 			},
 			complete: function() {
@@ -69,14 +70,17 @@ function resetGame() {
 function resetStats() {
 	$.ajax({
 		dataType: "json",
-		/*http://localhost:8180/rps-ws/rps/numberOfWins/Darlys*/
-		url: '/api/rps-ws/rps/numberOfWins/'+window.NAME,
+		url: '/api/rps/users/'+window.NAME,
 		data: {},
-		success: function(response) {
-			console.log('response', response);
-			$('#stats-counter').html(response.numberOfWins + (response.numberOfWins > 0 ? ' victoires' : 'victoire'));
+		success: function(user) {
+			console.log('user', user);
+			showStats(user);
 		}
 	});
+}
+
+function showStats(user) {
+	$('#stats-counter').html('Actuellement '+user.currentWinInARaw+' '+(user.currentWinInARaw > 0 ? 'victoires' : 'victoire')+'  d\'affilée - '+user.maxWinInARaw+' est votre reccord personnel');
 }
 
 function hideOpponentCard() {
@@ -84,11 +88,11 @@ function hideOpponentCard() {
 	$('#opponent-card .card')
 		.removeClass('card-rock')
 		.removeClass('card-paper')
-		.removeClass('card-scissor')
+		.removeClass('card-scissors')
 		.css('opacity', 0);
 }
 
-function showOpponentCard(opponentName, cardName) {
+function showOpponentCard(cardName) {
 	$('#opponent-card .card')
 		.addClass('card-' + cardName.toLowerCase())
 		.animate({
@@ -98,7 +102,7 @@ function showOpponentCard(opponentName, cardName) {
 
 function showResultBox(result) {
 	$('#result-overlay').fadeIn();
-	$('#result').fadeIn().html('You ' + result);
+	$('#result').fadeIn().html(result);
 }
 function hideResultBox() {
 	$('#result-overlay, #result').fadeOut();
