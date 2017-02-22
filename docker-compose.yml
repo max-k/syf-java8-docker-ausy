@@ -36,7 +36,7 @@ services:
 
 # Partie à faire coder aux stagiaires
 
-#  syf-ui:
-#    build: ./nginx
-#    ports:
-#      - 80:80
+  syf-ui:
+    build: ./nginx
+    ports:
+      - 80:80
