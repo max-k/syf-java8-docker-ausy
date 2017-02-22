@@ -14,19 +14,25 @@ services:
 
   syf-ws:
     image: jboss/wildfly
-    command: /opt/jboss/wildfly/bin/domain.sh -b 0.0.0.0 -bmanagement 0.0.0.0
+    #command: /opt/jboss/wildfly/bin/domain.sh -b 0.0.0.0 -bmanagement 0.0.0.0
+    environment:
+      DDL_AUTO: validate
+      JDBC_URL: jdbc:postgresql://syf-pg:5432/rps
+      JDBC_USER: rps
+      JDBC_PASSWORD: rps
     ports:
       - 8080:8080
       - 8180:8180
       - 9990:9990
       - 9999:9999
     volumes:
-      - ./wildfly/org:/opt/jboss/wildfly/modules/org
-      - ./wildfly/rps-ear.ear:/opt/jboss/wildfly/domain/deployments/rps-ear.ear
-      - ./wildfly/host.xml:/opt/jboss/wildfly/domain/configuration/host.xml
-      - ./wildfly/domain.xml:/opt/jboss/wildfly/domain/configuration/domain.xml
-      - ./wildfly/mgmt-groups.properties:/opt/jboss/wildfly/domain/configuration/mgmt-groups.properties
-      - ./wildfly/mgmt-users.properties:/opt/jboss/wildfly/domain/configuration/mgmt-users.properties
+      - ./rps-ws-light/target/rps-1.0.war:/opt/jboss/wildfly/standalone/deployments/rps-1.0.war
+      #- ./wildfly/org:/opt/jboss/wildfly/modules/org
+      #- ./wildfly/rps-ear.ear:/opt/jboss/wildfly/domain/deployments/rps-ear.ear
+      #- ./wildfly/host.xml:/opt/jboss/wildfly/domain/configuration/host.xml
+      #- ./wildfly/domain.xml:/opt/jboss/wildfly/domain/configuration/domain.xml
+      #- ./wildfly/mgmt-groups.properties:/opt/jboss/wildfly/domain/configuration/mgmt-groups.properties
+      #- ./wildfly/mgmt-users.properties:/opt/jboss/wildfly/domain/configuration/mgmt-users.properties
 
 # Partie à faire coder aux stagiaires
 
