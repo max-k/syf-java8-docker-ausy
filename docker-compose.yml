@@ -22,11 +22,11 @@ services:
       JDBC_PASSWORD: rps
     ports:
       - 8080:8080
-      - 8180:8180
-      - 9990:9990
-      - 9999:9999
+      #- 8180:8180
+      #- 9990:9990
+      #- 9999:9999
     volumes:
-      - ./rps-ws-light/target/rps-1.0.war:/opt/jboss/wildfly/standalone/deployments/rps-1.0.war
+      - ./rps-ws-light/target/rps-1.0.war:/opt/jboss/wildfly/standalone/deployments/rps.war
       #- ./wildfly/org:/opt/jboss/wildfly/modules/org
       #- ./wildfly/rps-ear.ear:/opt/jboss/wildfly/domain/deployments/rps-ear.ear
       #- ./wildfly/host.xml:/opt/jboss/wildfly/domain/configuration/host.xml
