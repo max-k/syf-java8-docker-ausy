@@ -9,7 +9,7 @@ services:
       POSTGRES_USER: rps
       POSTGRES_PASSWORD: rps
     volumes:
-            - ./postgres/rps.sql:/docker-entrypoint-initdb.d/rps.sql
+      - ./rps-ws-light/src/main/resources/syf.sql:/docker-entrypoint-initdb.d/rps.sql
         
 
   syf-ws:
